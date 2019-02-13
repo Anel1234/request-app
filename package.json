@@ -1,0 +1,11 @@
+{
+  "name": "request-app",
+  "version": "1.0.0",
+  "description": "front end for multi-user requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}
