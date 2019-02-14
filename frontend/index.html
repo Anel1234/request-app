@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
     <script src="main.js"></script>
 </head>
 
@@ -21,10 +22,14 @@
             <table>
                 <thead>
                 </thead>
+                <col width="100px">
+                <col width="auto">
+                <col width="100px"> 
                 <tbody data-bind="foreach: messageHistory">
                     <tr>
-                        <td data-bind="text: data.userName"></td>
-                        <td data-bind="text: data.message"></td>
+                        <td id="username" data-bind="text: userName"></td>
+                        <td id="message" data-bind="text: message"></td>
+                        <td id="datetime" data-bind="text: datetime"></td>
                     </tr>
                 </tbody>
             </table>

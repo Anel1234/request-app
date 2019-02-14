@@ -23,18 +23,30 @@ wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection accepted.');
 
     connection.on('message', function(message) {
-        var userObject = JSON.parse(message.utf8Data);
-        console.log((new Date()) + ' Received Message from ' + userObject.userName + ': ' + userObject.message);
-        history.push(userObject);
-        // if(message.type=='utf8') {
-        //     console.log(message);
-        //     console.log((new Date()) + ' Received Message from ' + userName + ': ' + message.utf8Data);
-        //     //process wS msg
-        // }
-        var json = JSON.stringify({ type:'message', data: userObject });
-        for (var i=0; i < clients.length; i++) {
-          clients[i].sendUTF(json);
+        var userObject = {type:'message', data:JSON.parse(message.utf8Data)};
+        if(userObject.data.history == false)
+        {
+            // history.foreach(function(element) {
+
+            // })
+            var json = JSON.stringify(history);
+            clients[index].sendUTF(json);
         }
+        else
+        {
+            console.log((new Date()) + ' Received Message from ' + userObject.data.userName + ': ' + userObject.data.message);
+            history.push(userObject);
+            // if(message.type=='utf8') {
+            //     console.log(message);
+            //     console.log((new Date()) + ' Received Message from ' + userName + ': ' + message.utf8Data);
+            //     //process wS msg
+            // }
+            var json = JSON.stringify([history[history.length-1]]);
+            for (var i=0; i < clients.length; i++) {
+              clients[i].sendUTF(json);
+            }
+        }
+        
     });
 
     connection.on('close', function(connection) {

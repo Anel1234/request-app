@@ -5,11 +5,21 @@
     position: relative;
 } */
 
+table {
+    width: 100%;
+    table-layout: fixed;  
+}
+
+td {
+    vertical-align: top;
+}
+
 #messageArea {
     height: 500px;
     width: 100%;
     position: relative;
     border: 1px solid darkgrey;
+    overflow: auto;
 }
 
 #textInputBox {
@@ -21,4 +31,16 @@
 #userInputArea {
     display: none;
     width: 1000px;
+}
+
+#username {
+    vertical-align: top;
+    overflow: hidden;
+    white-space: nowrap;
+    /* width:20%; */
+}
+
+#message {
+    overflow: initial;
+    word-wrap: break-word;
 }
